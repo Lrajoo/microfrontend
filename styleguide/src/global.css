@@ -1,0 +1,50 @@
+:root {
+  --color-primary: #011627;
+  --color-secondary: #8b8c8a;
+  --color-danger: #e71d36;
+  --color-warning: #ff9f1c;
+  --color-info: #2ec4b6;
+  --color-background: #182b3a;
+  --color-white: #fdfffc;
+  --color-black: #171817;
+  --color-overlay: rgba(253, 255, 252, 0.8);
+}
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+body {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.topnav {
+  position: fixed;
+  width: 80%;
+  top: 0px;
+  left: 300px;
+  z-index: 100;
+  padding: 10px 0;
+  background-color: grey;
+}
+
+.sidebar {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 300px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+.data {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  top: 150px; /* Stay at the top */
+  left: 320px;
+}

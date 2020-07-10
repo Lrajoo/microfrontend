@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>React Microfrontends</title>
+  <meta name="importmap-type" content="systemjs-importmap" />
+  <!-- <script type="systemjs-importmap" src="https://storage.googleapis.com/react.microfrontends.app/importmap.json"></script> -->
+  <% if (isLocal) { %>
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "@react-mf/root-config": "//localhost:9000/react-mf-root-config.js",
+        "@react-mf/styleguide": "//localhost:9001/react-mf-styleguide.js",
+        "@react-mf/sidebar": "//localhost:9002/react-mf-sidebar.js",
+        "@react-mf/navbar": "//localhost:9003/react-mf-navbar.js",
+        "@react-mf/data": "//localhost:9004/react-mf-data.js",
+        "react": "https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.production.min.js",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js",
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.5.3/lib/system/single-spa.min.js",
+        "rxjs": "https://cdn.jsdelivr.net/npm/@esm-bundle/rxjs@6.5.5/system/rxjs.min.js",
+        "rxjs/operators": "https://cdn.jsdelivr.net/npm/@esm-bundle/rxjs@6.5.5/system/rxjs-operators.min.js"
+      }
+    }
+  </script>
+  <% } %>
+  <script src="https://cdn.jsdelivr.net/npm/import-map-overrides/dist/import-map-overrides.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/amd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/named-exports.min.js"></script>
+  <template id="single-spa-layout">
+    <single-spa-router>
+      <div class="sidebar">
+        <application name="@react-mf/sidebar"></application>  
+      </div>
+      <route path="composer">
+          <div class="topnav">
+            <application name="@react-mf/navbar"></application>
+          </div>
+          <div class="data">
+            <application name="@react-mf/data"></application>
+          </div>
+      </route>
+      </div>
+    </single-spa-router>
+  </template>
+</head>
+<body>
+  <script>
+    System.import('@react-mf/root-config');
+    System.import('@react-mf/styleguide');
+  </script>
+  <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
+</body>
+</html>
